@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @route.title %>
+</p>
+
+<%= link_to 'редактировать', edit_route_path(@route) %> |
+<%= link_to 'назад', routes_path %>

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Маршруты</h1>
+
+<table>
+  <tr>
+    <td>Название</td>
+    <td colspan="3"></td>
+  </tr>
+  <% @routes.each do |route| %>
+    <tr>
+      <td><%= route.title %></td>
+      <td><%= link_to 'показать', route %></td>
+      <td><%= link_to 'редактировать', edit_route_path(route) %></td>
+      <td><%= link_to 'удалить', route, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to 'создать маршрут', new_route_path %>
