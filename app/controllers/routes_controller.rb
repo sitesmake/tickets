@@ -34,7 +34,7 @@ class RoutesController < ApplicationController
   end
 
   def destroy
-    @route.destroy
+    if @route.destroy
       redirect_to routes_url, notice: "Маршрут удален!"
     end
   end
@@ -45,6 +45,6 @@ class RoutesController < ApplicationController
     end
 
     def route_params
-      params.require(:route).permit(:title)
+      params.require(:route).permit(:title, railway_station_ids: [])
     end
 end
