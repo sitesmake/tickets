@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :vagons
   resources :routes
   resources :trains
   resources :railway_stations
