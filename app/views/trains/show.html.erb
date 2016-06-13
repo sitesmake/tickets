@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер:</strong>
   <%= @train.number %>
 </p>
 
@@ -14,5 +14,20 @@
 	<% end %>
 </p>
 
-<%= link_to 'Edit', edit_train_path(@train) %> |
-<%= link_to 'Back', trains_path %>
+<p>
+  <strong>Количество вагонов:</strong>
+  <%= @train.vagons.size %>
+</p>
+
+<p>
+  <strong>Верхних мест:</strong>
+  <%= @train.vagons.sum(:top_seats) %>
+</p>
+
+<p>
+  <strong>Нижних мест:</strong>
+  <%= @train.vagons.sum(:bottom_seats) %>
+</p>
+
+<%= link_to 'редактировать', edit_train_path(@train) %> |
+<%= link_to 'назад', trains_path %>
