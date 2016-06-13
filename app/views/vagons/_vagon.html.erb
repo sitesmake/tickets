@@ -1,0 +1,9 @@
+<tr>
+  <td><%= vagon.train.number %></td>
+  <td><%= vagon.type %></td>
+  <td><%= vagon.top_seats %></td>
+  <td><%= vagon.bottom_seats %></td>
+  <td><%= link_to 'Показать', vagon %></td>
+  <td><%= link_to 'Редактировать', edit_vagon_path(vagon) %></td>
+  <td><%= link_to 'Удалить', vagon, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
+</tr>
