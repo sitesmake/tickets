@@ -3,7 +3,11 @@
   <td><%= vagon.type %></td>
   <td><%= vagon.top_seats %></td>
   <td><%= vagon.bottom_seats %></td>
-  <td><%= link_to 'Показать', vagon %></td>
+  <td><%= vagon.side_top_seats %></td>
+  <td><%= vagon.side_bottom_seats %></td>
+  <td><%= vagon.sitting_seats %></td>
+
+  <td><%= link_to 'Показать', vagon_path(vagon) %></td>
   <td><%= link_to 'Редактировать', edit_vagon_path(vagon) %></td>
-  <td><%= link_to 'Удалить', vagon, method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
+  <td><%= link_to 'Удалить', vagon_path(vagon), method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
 </tr>

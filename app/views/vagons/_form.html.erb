@@ -18,9 +18,9 @@
 
   <div class="field">
     <%= f.label "тип" %><br>
-    <select name="vagon[type_id]" id="vagon_type_id">
-      <% Vagon::TYPE.each do |id| %>
-        <option value="<%= id %>"><%= Vagon.type(id) %></option>
+    <select name="vagon[type]" id="vagon_type">
+      <% Vagon::TYPE.each do |type| %>
+        <option value="<%= type.to_s.capitalize + "Vagon"  %>"><%= type %></option>
       <% end %>
     </select>
   </div>
@@ -33,6 +33,21 @@
   <div class="field">
     <%= f.label "нижних мест" %><br>
     <%= f.number_field :bottom_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "боковых верхних мест" %><br>
+    <%= f.number_field :side_top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "боковых нижних мест" %><br>
+    <%= f.number_field :side_bottom_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "сидячих мест" %><br>
+    <%= f.number_field :sitting_seats %>
   </div>
 
   <div class="actions">

@@ -19,7 +19,7 @@ class VagonsController < ApplicationController
     @vagon = Vagon.new(vagon_params)
 
     if @vagon.save
-      redirect_to @vagon, notice: 'Vagon was successfully created.'
+      redirect_to vagons_url, notice: 'Vagon was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class VagonsController < ApplicationController
 
   def update
     if @vagon.update(vagon_params)
-      redirect_to @vagon, notice: 'Vagon was successfully updated.'
+      redirect_to vagons_url, notice: 'Vagon was successfully updated.'
     else
       render :edit
     end
@@ -44,6 +44,6 @@ class VagonsController < ApplicationController
     end
 
     def vagon_params
-      params.require(:vagon).permit(:train_id, :type_id, :top_seats, :bottom_seats)
+      params.require(:vagon).permit(:train_id, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitting_seats)
     end
 end
