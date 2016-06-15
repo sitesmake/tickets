@@ -14,9 +14,16 @@
 	<% end %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Количество вагонов:</strong>
   <%= @train.vagons.size %>
+</p> -->
+
+<p>
+  <strong>Вагоны:</strong>
+  <table>
+  <%= render partial: 'vagons/vagon', collection: @train.vagons %>
+  </table>
 </p>
 
 <p>
