@@ -18,11 +18,7 @@
 
   <div class="field">
     <%= f.label "тип" %><br>
-    <select name="vagon[type]" id="vagon_type">
-      <% Vagon::TYPE.each do |type| %>
-        <option value="<%= type.to_s.capitalize + "Vagon"  %>"><%= type %></option>
-      <% end %>
-    </select>
+    <%= f.select :type, Vagon.types, {}, disabled: @type != "Vagon" %>
   </div>
 
   <div class="field">

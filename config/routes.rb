@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   resources :vagons
+  resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon'
+  resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon'
+  resources :sv_vagons, controller: 'vagons', kind: 'SvVagon'
+  resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon'
+
+
   resources :routes
   resources :trains
   resources :railway_stations

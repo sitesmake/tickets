@@ -1,5 +1,7 @@
 class Vagon < ActiveRecord::Base
-	TYPE = [:coupe, :platzkart, :sv, :sitting]
+  def self.types
+    %w(CoupeVagon PlatzkartVagon SvVagon SittingVagon)
+  end
 
   belongs_to :train
 
@@ -7,10 +9,15 @@ class Vagon < ActiveRecord::Base
 
   before_save :set_number
 
+  scope :coupes, -> { where(type: 'CoupeVagon')}
+  scope :platzkarts, -> { where(type: 'PLatzkartVagon')}
+  scope :svs, -> { where(type: 'SvVagon')}
+  scope :sittings, -> { where(type: 'SittingVagon')}
+
   private
 
   def set_number
-    binding.remote_pry
+    # binding.remote_pry
     number = (self.train.vagons.maximum('number').to_i rescue 0) + 1
   end
 

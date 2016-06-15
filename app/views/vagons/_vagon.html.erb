@@ -8,7 +8,7 @@
   <td><%= vagon.sitting_seats %></td>
   <td><%= vagon.number %></td>
 
-  <td><%= link_to 'Показать', vagon_path(vagon) %></td>
-  <td><%= link_to 'Редактировать', edit_vagon_path(vagon) %></td>
-  <td><%= link_to 'Удалить', vagon_path(vagon), method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
+  <td><%= link_to 'Показать', sti_vagon_path(vagon.type, vagon) %></td>
+  <td><%= link_to 'Редактировать', sti_vagon_path(vagon.type, vagon, :edit) %></td>
+  <td><%= link_to 'Удалить', sti_vagon_path(vagon.type, vagon), method: :delete, data: { confirm: 'Вы уверенны?' } %></td>
 </tr>

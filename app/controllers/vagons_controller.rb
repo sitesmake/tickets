@@ -1,15 +1,16 @@
 class VagonsController < ApplicationController
+  before_action :set_type
   before_action :set_vagon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vagons = Vagon.all
+    @vagons = type_class.all
   end
 
   def show
   end
 
   def new
-    @vagon = Vagon.new
+    @vagon = type_class.new
   end
 
   def edit
@@ -19,7 +20,7 @@ class VagonsController < ApplicationController
     @vagon = Vagon.new(vagon_params)
 
     if @vagon.save
-      redirect_to vagons_url, notice: 'Vagon was successfully created.'
+      redirect_to @vagon, notice: 'Vagon was successfully created.'
     else
       render :new
     end
@@ -27,7 +28,7 @@ class VagonsController < ApplicationController
 
   def update
     if @vagon.update(vagon_params)
-      redirect_to vagons_url, notice: 'Vagon was successfully updated.'
+      redirect_to @vagon, notice: 'Vagon was successfully updated.'
     else
       render :edit
     end
@@ -39,11 +40,23 @@ class VagonsController < ApplicationController
   end
 
   private
+    def set_type
+      @type = type
+    end
+
+    def type
+      Vagon.types.include?(params[:kind]) ? params[:kind] : "Vagon"
+    end
+
+    def type_class
+      type.constantize
+    end
+
     def set_vagon
-      @vagon = Vagon.find(params[:id])
+      @vagon = type_class.find(params[:id])
     end
 
     def vagon_params
-      params.require(:vagon).permit(:train_id, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitting_seats, :number)
+      params.require(type.underscore.to_sym).permit(:train_id, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitting_seats, :number)
     end
 end
