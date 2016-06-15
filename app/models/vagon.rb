@@ -5,7 +5,7 @@ class Vagon < ActiveRecord::Base
 
   belongs_to :train
 
-  # validates :number, uniqueness: { scope: :train_id }
+  validates :number, uniqueness: { scope: :train_id }
 
   before_save :set_number
 
@@ -18,7 +18,7 @@ class Vagon < ActiveRecord::Base
 
   def set_number
     # binding.remote_pry
-    number = (self.train.vagons.maximum('number').to_i rescue 0) + 1
+    self.number = (self.train.vagons.maximum('number').to_i rescue 0) + 1
   end
 
   # def self.type(id)
