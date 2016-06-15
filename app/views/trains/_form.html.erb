@@ -21,6 +21,11 @@
     <%= f.collection_select :route_id, Route.all, :id, :title %>
   </div>
 
+  <div class="field">
+    <%= f.label "нумерация с головы" %><br>
+    <%= f.check_box :from_head %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

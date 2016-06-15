@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614205553) do
+ActiveRecord::Schema.define(version: 20160615102635) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string   "title"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160614205553) do
     t.datetime "updated_at",         null: false
     t.integer  "current_station_id"
     t.integer  "route_id"
+    t.boolean  "from_head"
   end
 
   create_table "users", force: :cascade do |t|

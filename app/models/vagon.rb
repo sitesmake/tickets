@@ -14,6 +14,9 @@ class Vagon < ActiveRecord::Base
   scope :svs, -> { where(type: 'SvVagon')}
   scope :sittings, -> { where(type: 'SittingVagon')}
 
+  scope :from_head, -> { order("number ASC")}
+  scope :from_tail, -> { order("number DESC")}
+
   private
 
   def set_number
