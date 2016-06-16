@@ -6,9 +6,9 @@ class Route < ActiveRecord::Base
 
   validates :title, presence: true
 
-  def self.ab_search(start_station_id, end_station_id)
-    start_routes = RailwayStationsRoute.where(railway_station_id: [start_station_id]).pluck(:route_id).uniq
-    final_routes = RailwayStationsRoute.where(railway_station_id: [end_station_id], route_id: start_routes)
+  def self.ab_search(start_station, end_station)
+    start_routes = RailwayStationsRoute.where(railway_station_id: start_station).pluck(:route_id).uniq
+    final_routes = RailwayStationsRoute.where(railway_station_id: end_station, route_id: start_routes)
     Route.where(id: final_routes.pluck(:route_id))
   end
 

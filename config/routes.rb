@@ -4,12 +4,11 @@ Rails.application.routes.draw do
     post 'result'
   end
 
-
-
   resources :routes
 
   resources :trains do
     resources :vagons, shallow: true
+    resources :tickets, shallow: true, only: [:create, :show]
     resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon', shallow: true
     resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon', shallow: true
     resources :sv_vagons, controller: 'vagons', kind: 'SvVagon', shallow: true

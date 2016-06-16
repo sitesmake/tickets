@@ -1,5 +1,30 @@
 <ul>
-<% @routes.each do |route|%>
-  <li>маршрут: <%= route.title %>, отправление: <%= route.railway_stations_routes.where(railway_station_id: @start_station_id).first.departure_time rescue "не указано" %>, прибытие: <%= route.railway_stations_routes.where(railway_station_id: @end_station_id).first.arrival_time rescue "не указано" %></li>
+<% @routes.each do |route| %>
+  <li>
+    маршрут: <%= route.title %>,
+
+    отправление: <%= route.railway_stations_routes.where(railway_station_id: @start_station).first.departure_time rescue "не указано" %>,
+
+    прибытие: <%= route.railway_stations_routes.where(railway_station_id: @end_station).first.arrival_time rescue "не указано" %>
+
+    <% if route.trains.present? %>
+      <% route.trains.each do |train| %>
+        <%= form_tag train_tickets_path(train) do %>
+          <%= text_field_tag :fio %>
+          <%= text_field_tag :passport %>
+          <%= hidden_field_tag :railway_stations_route_id, route.railway_stations_routes.first.id %>
+          <%= hidden_field_tag :start_station_id, @start_station.id %>
+          <%= hidden_field_tag :end_station_id, @end_station.id %>
+          <%= submit_tag "купить билет на поезд №#{train.number}" %>
+        <% end %>
+      <% end %>
+
+    <% else %>
+
+      <strong>в настоящее время поездов на данный маршрут не назначено</strong>
+
+    <% end %>
+
+  </li>
 <% end %>
 </ul>
