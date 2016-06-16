@@ -6,6 +6,12 @@ class TrainsController < ApplicationController
   end
 
   def show
+    @vagons = @train.vagons
+    if @train.from_head?
+      @vagons = @vagons.from_head
+    else
+      @vagons = @vagons.from_tail
+    end
   end
 
   def new
@@ -44,6 +50,6 @@ class TrainsController < ApplicationController
     end
 
     def train_params
-      params.require(:train).permit(:number, :route_id)
+      params.require(:train).permit(:number, :route_id, :from_head)
     end
 end

@@ -5,4 +5,5 @@ class Route < ActiveRecord::Base
   has_many :trains
 
   validates :title, presence: true
+
 end

@@ -1,15 +1,16 @@
 class VagonsController < ApplicationController
+  before_action :set_type
   before_action :set_vagon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vagons = Vagon.all
+    @vagons = type_class.all
   end
 
   def show
   end
 
   def new
-    @vagon = Vagon.new
+    @vagon = type_class.new
   end
 
   def edit
@@ -39,11 +40,23 @@ class VagonsController < ApplicationController
   end
 
   private
+    def set_type
+      @type = type
+    end
+
+    def type
+      Vagon.types.include?(params[:kind]) ? params[:kind] : "Vagon"
+    end
+
+    def type_class
+      type.constantize
+    end
+
     def set_vagon
-      @vagon = Vagon.find(params[:id])
+      @vagon = type_class.find(params[:id])
     end
 
     def vagon_params
-      params.require(:vagon).permit(:train_id, :type_id, :top_seats, :bottom_seats)
+      params.require(type.underscore.to_sym).permit(:train_id, :type, :top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats, :sitting_seats, :number)
     end
 end

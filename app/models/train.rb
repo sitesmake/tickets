@@ -5,4 +5,8 @@ class Train < ActiveRecord::Base
   has_many :tickets
 
   has_many :vagons
+
+  def count_seats(vagon_type, seats_type)
+    self.vagons.where(type: vagon_type).sum(seats_type)
+  end
 end

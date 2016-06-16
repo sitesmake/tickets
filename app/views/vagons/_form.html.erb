@@ -1,4 +1,4 @@
-<%= form_for(@vagon) do |f| %>
+<%= form_for(@vagon, as: :vagon, url: :vagons) do |f| %>
   <% if @vagon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vagon.errors.count, "error") %> prohibited this vagon from being saved:</h2>
@@ -18,11 +18,7 @@
 
   <div class="field">
     <%= f.label "тип" %><br>
-    <select name="vagon[type_id]" id="vagon_type_id">
-      <% Vagon::TYPE.each do |id| %>
-        <option value="<%= id %>"><%= Vagon.type(id) %></option>
-      <% end %>
-    </select>
+    <%= f.select :type, Vagon.types, {}, disabled: @type != "Vagon" %>
   </div>
 
   <div class="field">
@@ -33,6 +29,21 @@
   <div class="field">
     <%= f.label "нижних мест" %><br>
     <%= f.number_field :bottom_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "боковых верхних мест" %><br>
+    <%= f.number_field :side_top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "боковых нижних мест" %><br>
+    <%= f.number_field :side_bottom_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label "сидячих мест" %><br>
+    <%= f.number_field :sitting_seats %>
   </div>
 
   <div class="actions">
