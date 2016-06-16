@@ -5,7 +5,7 @@ class RailwayStationsRoute < ActiveRecord::Base
   validates :railway_station_id, uniqueness: { scope: :route_id }
   validates :position, uniqueness: { scope: :route_id }
 
-  default_scope { order(:position) }
+  # default_scope { order(:position) }
 
   # before_save :set_auto_position
 

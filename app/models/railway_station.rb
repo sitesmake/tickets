@@ -4,6 +4,8 @@ class RailwayStation < ActiveRecord::Base
 
   has_many :trains, foreign_key: :current_station_id
 
+  scope :ordered, -> { joins(:railway_stations_routes).order("railway_stations_routes.position") }
+
   def update_position(route, position)
     station_route = station_route(route)
     station_route.update(position: position)
