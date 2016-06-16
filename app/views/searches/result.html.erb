@@ -1,0 +1,5 @@
+<ul>
+<% @routes.each do |route|%>
+  <li>маршрут: <%= route.title %>, отправление: <%= route.railway_stations_routes.where(railway_station_id: @start_station_id).first.departure_time rescue "не указано" %>, прибытие: <%= route.railway_stations_routes.where(railway_station_id: @end_station_id).first.arrival_time rescue "не указано" %></li>
+<% end %>
+</ul>

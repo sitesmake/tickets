@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resource :search, only: [:show] do
+    post 'result'
+  end
 
 
 
