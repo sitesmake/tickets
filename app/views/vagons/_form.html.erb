@@ -1,4 +1,4 @@
-<%= form_for(@vagon, as: :vagon, url: :vagons) do |f| %>
+<%= form_for([@train, @vagon]) do |f| %>
   <% if @vagon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vagon.errors.count, "error") %> prohibited this vagon from being saved:</h2>
@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label "поезд" %><br>
-    <%= f.collection_select :train_id, Train.all, :id, :number %>
-  </div>
 
   <div class="field">
     <%= f.label "тип" %><br>

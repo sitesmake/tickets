@@ -1,9 +1,10 @@
 class VagonsController < ApplicationController
+  before_action :set_train, only: [:index, :new, :create]
   before_action :set_type
   before_action :set_vagon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vagons = type_class.all
+    @vagons = type_class.where(train: @train)
   end
 
   def show
@@ -17,7 +18,7 @@ class VagonsController < ApplicationController
   end
 
   def create
-    @vagon = Vagon.new(vagon_params)
+    @vagon = @train.vagons.new(vagon_params)
 
     if @vagon.save
       redirect_to @vagon, notice: 'Vagon was successfully created.'
@@ -40,6 +41,10 @@ class VagonsController < ApplicationController
   end
 
   private
+    def set_train
+      @train = Train.find(params[:train_id])
+    end
+
     def set_type
       @type = type
     end
