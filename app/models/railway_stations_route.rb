@@ -7,12 +7,12 @@ class RailwayStationsRoute < ActiveRecord::Base
 
   default_scope { order(:position) }
 
-  before_save :set_auto_position
+  # before_save :set_auto_position
 
   private
 
-  def set_auto_position
-    self.position = (RailwayStationsRoute.where(route: route).order(:position).last.position.to_i rescue 0) + 1
-  end
+  # def set_auto_position
+  #   self.position = (RailwayStationsRoute.where(route: route).order(:position).last.position.to_i rescue 0) + 1
+  # end
 
 end

@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
+
   resources :vagons
   resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon'
   resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon'
   resources :sv_vagons, controller: 'vagons', kind: 'SvVagon'
   resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon'
 
-
   resources :routes
+
   resources :trains
-  resources :railway_stations
+
+  resources :railway_stations do
+    patch :update_position, on: :member
+  end
 
   root 'railway_stations#index'
 
