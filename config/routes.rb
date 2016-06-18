@@ -1,25 +1,42 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  namespace :admin do
+    get 'welcome' => 'welcome#index'
+
+    resources :railway_stations do
+      patch :update_position, on: :member
+    end
+
+    resources :tickets, only: [:show, :destroy, :index]
+
+    resources :vagons, only: [:index]
+
+    resources :trains do
+      resources :vagons, shallow: true, except: [:index]
+
+      resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon', shallow: true
+      resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon', shallow: true
+      resources :sv_vagons, controller: 'vagons', kind: 'SvVagon', shallow: true
+      resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon', shallow: true
+    end
+
+    resources :routes
+  end
+
+  get 'tickets' => 'tickets#index'
+
+  resources :trains, only: [:index, :show] do
+    resources :tickets, shallow: true, only: [:create, :show, :destroy]
+  end
+
+
 
   resource :search, only: [:show] do
     post 'result'
   end
 
-  resources :routes
-
-  resources :trains do
-    resources :vagons, shallow: true
-    resources :tickets, shallow: true, only: [:create, :show]
-    resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon', shallow: true
-    resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon', shallow: true
-    resources :sv_vagons, controller: 'vagons', kind: 'SvVagon', shallow: true
-    resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon', shallow: true
-  end
-
-  resources :railway_stations do
-    patch :update_position, on: :member
-  end
-
-  root 'railway_stations#index'
+  root 'searches#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

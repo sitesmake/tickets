@@ -1,0 +1,15 @@
+<tr>
+  <td><%= railway_station.title %></td>
+  <td>
+    <%= form_tag update_position_admin_railway_station_path(railway_station), method: :patch do %>
+      <%= number_field_tag :position, railway_station.position_in(route) %>
+      <%= text_field_tag :arrival_time, railway_station.arrival_time_in(route) %>
+      <%= text_field_tag :departure_time, railway_station.departure_time_in(route)  %>
+      <%= hidden_field_tag :route_id, route.id %>
+      <%= submit_tag 'set' %>
+    <% end %>
+  </td>
+  <td><%= link_to 'Показать', admin_railway_station_path(railway_station) %></td>
+  <td><%= link_to 'Редактировать', edit_admin_railway_station_path(railway_station) %></td>
+  <td><%= link_to 'Удалить', admin_railway_station_path(railway_station), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+</tr>
