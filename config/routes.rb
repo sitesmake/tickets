@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
-  resources :vagons
-  resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon'
-  resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon'
-  resources :sv_vagons, controller: 'vagons', kind: 'SvVagon'
-  resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon'
 
+  resource :search, only: [:show] do
+    post 'result'
+  end
 
   resources :routes
-  resources :trains
-  resources :railway_stations
+
+  resources :trains do
+    resources :vagons, shallow: true
+    resources :tickets, shallow: true, only: [:create, :show]
+    resources :coupe_vagons, controller: 'vagons', kind: 'CoupeVagon', shallow: true
+    resources :platzkart_vagons, controller: 'vagons', kind: 'PlatzkartVagon', shallow: true
+    resources :sv_vagons, controller: 'vagons', kind: 'SvVagon', shallow: true
+    resources :sitting_vagons, controller: 'vagons', kind: 'SittingVagon', shallow: true
+  end
+
+  resources :railway_stations do
+    patch :update_position, on: :member
+  end
 
   root 'railway_stations#index'
 

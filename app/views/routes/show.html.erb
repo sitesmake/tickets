@@ -20,7 +20,7 @@
 	<strong>Список станций:</strong>
 	<% if @route.railway_stations.present? %>
 		<table>
-			<%= render @route.railway_stations %>
+			<%= render @route.railway_stations.ordered.uniq, route: @route %>
 		</table>
 	<% else %>
 		станций в маршруте нет

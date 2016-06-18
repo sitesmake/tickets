@@ -1,0 +1,7 @@
+<%= form_tag result_search_path  do %>
+  начальная станция:
+  <%= collection_select :start_station, :id, RailwayStation.all, :id, :title %>
+  конечная станция:
+  <%= collection_select :end_station, :id, RailwayStation.all, :id, :title %>
+  <%= submit_tag 'найти' %>
+<% end %>
