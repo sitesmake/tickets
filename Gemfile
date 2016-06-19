@@ -4,6 +4,9 @@ gem 'pry'
 gem 'pry-remote'
 gem 'devise'
 
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
+
 group :development do
   gem 'letter_opener'
 end

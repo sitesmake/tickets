@@ -1,7 +1,14 @@
-<%= form_tag result_search_path  do %>
-  начальная станция:
-  <%= collection_select :start_station, :id, RailwayStation.all, :id, :title %>
-  конечная станция:
-  <%= collection_select :end_station, :id, RailwayStation.all, :id, :title %>
-  <%= submit_tag 'найти' %>
-<% end %>
+<h1>Поиск билетов:</h1>
+<div class="row">
+  <%= form_tag result_search_path  do %>
+    <div class="col-md-4">
+      <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= select_tag :end_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4">
+      <%= submit_tag 'найти', class:'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
