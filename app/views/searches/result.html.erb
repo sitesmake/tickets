@@ -10,8 +10,6 @@
     <% if route.trains.present? %>
       <% route.trains.each do |train| %>
         <%= form_tag train_tickets_path(train) do %>
-          <%= text_field_tag :fio %>
-          <%= text_field_tag :passport %>
           <%= hidden_field_tag :railway_stations_route_id, route.railway_stations_routes.first.id %>
           <%= hidden_field_tag :start_station_id, @start_station.id %>
           <%= hidden_field_tag :end_station_id, @end_station.id %>

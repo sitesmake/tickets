@@ -4,7 +4,7 @@ module VagonsHelper
   end
 
   def format_sti(action, type, vagon)
-    action || vagon ? "#{format_action(action)}#{type.underscore}" : "#{type.underscore.pluralize}"
+    action || vagon ? "#{format_action(action)}admin_#{type.underscore}" : "#{type.underscore.pluralize}"
   end
 
   def format_action(action)

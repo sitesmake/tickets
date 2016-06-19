@@ -1,0 +1,9 @@
+<ul>
+<% @tickets.each do |ticket| %>
+  <li>
+    <%= ticket.id %>
+    <%= link_to 'Показать', ticket %>
+    <%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверенны?' } %>
+  </li>
+<% end %>
+</ul>

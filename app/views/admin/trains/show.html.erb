@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Номер:</strong>
+  <%= @train.number %>
+</p>
+
+<p>
+	<strong>Маршрут: </strong>
+	<% if @train.route %>
+		<%= @train.route.title %>
+	<% else %>
+		не назначен
+	<% end %>
+</p>
+
+<!-- <p>
+  <strong>Количество вагонов:</strong>
+  <%= @train.vagons.size %>
+</p> -->
+
+<p>
+  <strong>Вагоны:</strong>
+  <table>
+  <%= render partial: 'admin/vagons/vagon', collection: @vagons %>
+  </table>
+</p>
+
+<p>
+  <strong>Верхних мест:</strong>
+  <%= @train.vagons.sum(:top_seats) %>
+</p>
+
+<p>
+  <strong>Нижних мест:</strong>
+  <%= @train.vagons.sum(:bottom_seats) %>
+</p>
+
+<%= link_to 'редактировать', edit_admin_train_path(@train) %> |
+<%= link_to 'назад', trains_path %>

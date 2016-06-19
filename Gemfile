@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'pry'
 gem 'pry-remote'
+gem 'devise'
+
+group :development do
+  gem 'letter_opener'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
