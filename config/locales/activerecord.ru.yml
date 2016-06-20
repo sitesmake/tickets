@@ -1,0 +1,20 @@
+ru:
+  activerecord:
+    models:
+      railway_station: 'ЖД-станция'
+      route: 'Маршрут'
+      ticket: 'Билет'
+      train: 'Поезд'
+      vagon: 'Вагон'
+      coupe_vagon: 'Купейный вагон'
+      platzkart_vagon: 'Платцкартный вагон'
+      sitting_vagon: 'Сидячий вагон'
+      sv_vagon: 'СВ-вагон'
+    attributes:
+      railway_station:
+        title: 'Название'
+      train:
+        number: 'Номер'
+    errors:
+      messages:
+        blank: 'не может быть пустым'

@@ -1,0 +1,12 @@
+ru:
+  shared:
+    back: 'назад'
+    show: 'показать'
+  admin:
+    railway_stations:
+      form:
+        submit: 'Создать станцию'
+      new:
+        title: 'Новая станция'
+      edit:
+        title: 'Редактирование станции'
