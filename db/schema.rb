@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618164510) do
+ActiveRecord::Schema.define(version: 20160621144009) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string   "title"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20160618164510) do
     t.string  "arrival_time"
     t.string  "departure_time"
   end
+
+  add_index "railway_stations_routes", ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
+  add_index "railway_stations_routes", ["route_id"], name: "index_railway_stations_routes_on_route_id"
 
   create_table "routes", force: :cascade do |t|
     t.string   "title"
@@ -45,7 +48,9 @@ ActiveRecord::Schema.define(version: 20160618164510) do
     t.integer  "railway_stations_route_id"
   end
 
+  add_index "tickets", ["end_station_id"], name: "index_tickets_on_end_station_id"
   add_index "tickets", ["railway_stations_route_id"], name: "index_tickets_on_railway_stations_route_id"
+  add_index "tickets", ["start_station_id"], name: "index_tickets_on_start_station_id"
   add_index "tickets", ["train_id"], name: "index_tickets_on_train_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
@@ -57,6 +62,8 @@ ActiveRecord::Schema.define(version: 20160618164510) do
     t.integer  "route_id"
     t.boolean  "from_head"
   end
+
+  add_index "trains", ["route_id"], name: "index_trains_on_route_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "family"
@@ -92,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160618164510) do
     t.integer "number"
   end
 
+  add_index "vagons", ["id", "type"], name: "index_vagons_on_id_and_type"
   add_index "vagons", ["train_id"], name: "index_vagons_on_train_id"
 
 end
