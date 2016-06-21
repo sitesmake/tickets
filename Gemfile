@@ -9,6 +9,7 @@ gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 
 gem 'rails_12factor'
+gem 'postmark-rails', '>= 0.10.0'
 
 group :development do
   gem 'letter_opener'
