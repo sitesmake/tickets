@@ -15,3 +15,18 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$( document ).ready(function() {
+
+  function set_fields() {
+    var value = $("#new_vagon #vagon_type").val();
+    $('.vagon').not('.'+value).hide();
+    $('.vagon.' + value).show();
+  }
+
+  $("#new_vagon #vagon_type").on('change', set_fields);
+
+  set_fields();
+
+});
+
